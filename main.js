@@ -4,6 +4,8 @@ var game = new Phaser.Game (800, 600, Phaser.AUTO, 'game_div', { preload: preloa
 var paddle;
 var ball;
 
+var ballOnPaddle = true;
+
 function preload () {
 
   //http://goo.gl/WVVCiU
@@ -54,5 +56,9 @@ function update () {
 
   //move paddle to the x coordinate of the mouse.
   paddle.body.x = game.input.x;
+
+  //make the ball go along with paddle initally
+  if (ballOnPaddle)
+    ball.body.x = paddle.x;
 
 }
