@@ -72,7 +72,8 @@ function create () {
   for (var y = 0; y < 4; y++){
     for (var x = 0; x < 15; x++) {
       brick = bricks.create (120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + '_1.png');
-
+      brick.body.bounce.set (1);
+      brick.body.immovable = true;
     }
   }
 
@@ -124,7 +125,9 @@ function ballHitPaddle () {
   console.log ("Ouch!");
 }
 
-function ballHitBrick () {
+//what is _ball and _brick? Are they some special vars?
+function ballHitBrick (_ball, _brick) {
 
-  console.log ("Ooooh!");
+  _brick.kill ();
+
 }
