@@ -50,6 +50,8 @@ function create () {
 
   game.physics.enable (ball, Phaser.Physics.ARCADE);
 
+  game.input.onDown.add (releaseBall, this);
+
 }
 
 function update () {
@@ -61,4 +63,14 @@ function update () {
   if (ballOnPaddle)
     ball.body.x = paddle.x;
 
+}
+
+
+function releaseBall () {
+
+  if (ballOnPaddle) {
+    ballOnPaddle = false;
+    ball.body.velocity.y = - 300;
+    ball.body.velocity.x = -75;
+  }
 }
