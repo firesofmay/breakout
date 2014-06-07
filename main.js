@@ -56,6 +56,7 @@ function create () {
   //make sure its collide and not check! Silly mistake wasted half an hour!
   //ball.body.checkWorldBounds = true;
   ball.body.collideWorldBounds = true;
+  //this is what makes ball bounce off the wall, paddle, etc!
   ball.body.bounce.set (1);
 
 
@@ -71,6 +72,10 @@ function update () {
   //make the ball go along with paddle initally
   if (ballOnPaddle)
     ball.body.x = paddle.x;
+  else {
+    //check if ball and paddle got hit!
+    game.physics.arcade.collide (ball, paddle, ballHitPaddle, null, this);
+  }
 
 }
 
@@ -82,4 +87,9 @@ function releaseBall () {
     ball.body.velocity.y = - 300;
     ball.body.velocity.x = -75;
   }
+}
+
+function ballHitPaddle () {
+
+  console.log ("Ouch!");
 }
