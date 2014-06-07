@@ -3,6 +3,7 @@ var game = new Phaser.Game (800, 600, Phaser.AUTO, 'game_div', { preload: preloa
 
 var paddle;
 var ball;
+var bricks;
 
 var ballOnPaddle = true;
 
@@ -62,6 +63,19 @@ function create () {
   //this is what makes ball bounce off the wall, paddle, etc!
   ball.body.bounce.set (1);
 
+  /*BRICKS SECTION*/
+  bricks = game.add.group ();
+  bricks.enableBody = true;
+  bricks.physicsBodyType = Phaser.Physics.ARCADE;
+
+  var brick;
+  for (var y = 0; y < 4; y++){
+    for (var x = 0; x < 15; x++) {
+      brick = bricks.create (120 + (x * 36), 100 + (y * 52), 'breakout', 'brick_' + (y+1) + '_1.png');
+
+    }
+  }
+
   game.input.onDown.add (releaseBall, this);
 
 }
@@ -87,6 +101,10 @@ function update () {
   else {
     //check if ball and paddle got hit!
     game.physics.arcade.collide (ball, paddle, ballHitPaddle, null, this);
+
+    //check if ball and brick got hit!
+    game.physics.arcade.collide(ball, bricks, ballHitBrick, null, this);
+
   }
 
 }
@@ -104,4 +122,9 @@ function releaseBall () {
 function ballHitPaddle () {
 
   console.log ("Ouch!");
+}
+
+function ballHitBrick () {
+
+  console.log ("Ooooh!");
 }
