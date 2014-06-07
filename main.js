@@ -5,6 +5,8 @@ var paddle;
 var ball;
 var bricks;
 
+var lives = 3;
+
 var ballOnPaddle = true;
 
 var s;
@@ -140,7 +142,19 @@ function ballHitBrick (_ball, _brick) {
 }
 
 function ballLost () {
-  ballOnPaddle = true;
-  ball.reset (paddle.body.x + 16, paddle.y - 16);
-  ball.animations.stop ();
+  lives--;
+
+  if (lives === 0)
+    gameOver ();
+  else
+  {
+    ballOnPaddle = true;
+    ball.reset (paddle.body.x + 16, paddle.y - 16);
+    ball.animations.stop ();
+  }
+}
+
+function gameOver () {
+
+  ball.body.velocity.setTo (0,0);
 }
