@@ -8,7 +8,7 @@ var bricks;
 var lives = 3;
 
 var livesText;
-
+var introText;
 
 var ballOnPaddle = true;
 
@@ -88,6 +88,8 @@ function create () {
 
   /*TEXT SECTION*/
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+  introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
+  introText.anchor.setTo(0.5, 0.5);
 
   game.input.onDown.add (releaseBall, this);
 
@@ -132,6 +134,9 @@ function releaseBall () {
 
     //start ball animations
     ball.animations.play ('spin');
+
+    //remove the introtext
+    introText.visible = false;
   }
 }
 
