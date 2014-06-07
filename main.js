@@ -62,6 +62,7 @@ function create () {
   ball.body.collideWorldBounds = true;
   //this is what makes ball bounce off the wall, paddle, etc!
   ball.body.bounce.set (1);
+  ball.animations.add ('spin', ['ball_1.png', 'ball_2.png', 'ball_3.png','ball_4.png', 'ball_5.png'], 50, true, false);
 
   /*BRICKS SECTION*/
   bricks = game.add.group ();
@@ -117,6 +118,9 @@ function releaseBall () {
     ballOnPaddle = false;
     ball.body.velocity.y = - 300;
     ball.body.velocity.x = -75;
+
+    //start ball animations
+    ball.animations.play ('spin');
   }
 }
 
