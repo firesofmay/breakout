@@ -61,7 +61,6 @@ function create () {
   //this is what makes ball bounce off the wall, paddle, etc!
   ball.body.bounce.set (1);
 
-
   game.input.onDown.add (releaseBall, this);
 
 }
@@ -70,6 +69,16 @@ function update () {
 
   //move paddle to the x coordinate of the mouse.
   paddle.body.x = game.input.x;
+
+  //this keeps the paddle and the ball within the game world width.
+  if (paddle.x < 24)
+  {
+    paddle.x = 24;
+  }
+  else if (paddle.x > game.width - 24)
+  {
+    paddle.x = game.width - 24;
+  }
 
   //make the ball go along with paddle initally
   if (ballOnPaddle)
