@@ -44,11 +44,20 @@ function create () {
 
 
   /*BALL SECTION*/
+
   ball = game.add.sprite (game.world.centerX, paddle.y - 16, 'breakout', 'ball_1.png');
   ball.anchor.set (0.5);
+
+  //is this required??
   ball.checkWorldBounds = true;
 
   game.physics.enable (ball, Phaser.Physics.ARCADE);
+
+  //make sure its collide and not check! Silly mistake wasted half an hour!
+  //ball.body.checkWorldBounds = true;
+  ball.body.collideWorldBounds = true;
+  ball.body.bounce.set (1);
+
 
   game.input.onDown.add (releaseBall, this);
 
