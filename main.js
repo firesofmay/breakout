@@ -64,6 +64,9 @@ function create () {
   ball.body.bounce.set (1);
   ball.animations.add ('spin', ['ball_1.png', 'ball_2.png', 'ball_3.png','ball_4.png', 'ball_5.png'], 50, true, false);
 
+  //if the ball went below the screen, restart the game!
+  ball.events.onOutOfBounds.add (ballLost, this);
+
   /*BRICKS SECTION*/
   bricks = game.add.group ();
   bricks.enableBody = true;
@@ -134,4 +137,10 @@ function ballHitBrick (_ball, _brick) {
 
   _brick.kill ();
 
+}
+
+function ballLost () {
+  ballOnPaddle = true;
+  ball.reset (paddle.body.x + 16, paddle.y - 16);
+  ball.animations.stop ();
 }
