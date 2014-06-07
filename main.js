@@ -7,6 +7,9 @@ var bricks;
 
 var lives = 3;
 
+var livesText;
+
+
 var ballOnPaddle = true;
 
 var s;
@@ -83,6 +86,9 @@ function create () {
     }
   }
 
+  /*TEXT SECTION*/
+  livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
+
   game.input.onDown.add (releaseBall, this);
 
 }
@@ -143,6 +149,7 @@ function ballHitBrick (_ball, _brick) {
 
 function ballLost () {
   lives--;
+  livesText.text = 'lives: ' + lives;
 
   if (lives === 0)
     gameOver ();
