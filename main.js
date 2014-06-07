@@ -6,6 +6,7 @@ var ball;
 
 var ballOnPaddle = true;
 
+var s;
 function preload () {
 
   //http://goo.gl/WVVCiU
