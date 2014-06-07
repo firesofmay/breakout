@@ -135,9 +135,14 @@ function releaseBall () {
   }
 }
 
-function ballHitPaddle () {
+function ballHitPaddle (_ball, _paddle) {
+  var diff = 0;
 
-  console.log ("Ouch!");
+  if (_ball.x === paddle.x)
+    _ball.body.velocity.x = 2 + Math.random() * 8;
+  else
+    _ball.body.velocity.x = (10 * (ball.x - _paddle.x));
+
 }
 
 //what is _ball and _brick? Are they some special vars?
