@@ -180,4 +180,21 @@ function ballLost () {
 function gameOver () {
 
   ball.body.velocity.setTo (0,0);
+
+  //set intro
+  introText.text = "Game Over!";
+  introText.visible = true;
+
+  //reset score
+  score = 0;
+  scoreText.text = "score: " + score;
+
+  //reset lives
+  lives = 3;
+  livesText.text = "lives: " + lives;
+
+  //reset paddle!
+  ballOnPaddle = true;
+  ball.reset (paddle.body.x + 16, paddle.y - 16);
+  ball.animations.stop ();
 }
