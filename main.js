@@ -6,9 +6,11 @@ var ball;
 var bricks;
 
 var lives = 3;
+var score = 0;
 
 var livesText;
 var introText;
+var scoreText;
 
 var ballOnPaddle = true;
 
@@ -90,6 +92,7 @@ function create () {
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
   introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
   introText.anchor.setTo(0.5, 0.5);
+  scoreText = game.add.text (32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left"});
 
   game.input.onDown.add (releaseBall, this);
 
@@ -154,6 +157,9 @@ function ballHitPaddle (_ball, _paddle) {
 function ballHitBrick (_ball, _brick) {
 
   _brick.kill ();
+  score += 10;
+
+  scoreText.text = "score: " + score;
 
 }
 
