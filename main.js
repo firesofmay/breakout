@@ -161,6 +161,23 @@ function ballHitBrick (_ball, _brick) {
 
   scoreText.text = "score: " + score;
 
+  //Any more bricks Yo?
+  if (bricks.countLiving () == 0) {
+    //Star new Level
+    score += 1000;
+    scoreText.text = 'score: ' + score;
+    introText.text = '-- Next Level --';
+    //missing in the docs
+    introText.visible = true;
+
+    ballOnPaddle = true;
+    ball.body.velocity.set (0);
+    ball.reset (paddle.body.x + 16, paddle.y - 16);
+    ball.animations.stop ();
+
+    bricks.callAll ('revive');
+  }
+
 }
 
 function ballLost () {
