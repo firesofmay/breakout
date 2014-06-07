@@ -2,6 +2,7 @@
 var game = new Phaser.Game (800, 600, Phaser.AUTO, 'game_div', { preload: preload, create: create, update: update});
 
 var paddle;
+var ball;
 
 function preload () {
 
@@ -38,6 +39,15 @@ function create () {
   //add paddle to the physics engine!
   game.physics.enable (paddle, Phaser.Physics.ARCADE);
   paddle.body.CollideWorldBounds = true;
+
+
+  /*BALL SECTION*/
+  ball = game.add.sprite (game.world.centerX, paddle.y - 16, 'breakout', 'ball_1.png');
+  ball.anchor.set (0.5);
+  ball.checkWorldBounds = true;
+
+  game.physics.enable (ball, Phaser.Physics.ARCADE);
+
 }
 
 function update () {
