@@ -63,7 +63,7 @@ function create () {
 
   //add paddle to the physics engine!
   game.physics.enable (paddle, Phaser.Physics.ARCADE);
-  paddle.body.CollideWorldBounds = true;
+  paddle.body.collideWorldBounds = true;
   paddle.body.bounce.set (1);
   paddle.body.immovable = true;
 
