@@ -176,6 +176,10 @@ function ballHitBrick (_ball, _brick) {
   //Any more bricks Yo?
   if (bricks.countLiving () == 0) {
     //Star new Level
+
+    //stop the music first!
+    music.stop ();
+
     score += 1000;
     scoreText.text = 'score: ' + score;
     introText.text = '-- Next Level --';
