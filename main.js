@@ -15,6 +15,9 @@ var scoreText;
 var ballOnPaddle = true;
 
 var s;
+
+var music;
+
 function preload () {
 
   //http://goo.gl/WVVCiU
@@ -22,11 +25,16 @@ function preload () {
 
   //http://goo.gl/TN8P7q
   game.load.image ('starfield', 'assets/starfield.jpg');
+
+  //load the background music!
+  game.load.audio ('background', ['assets/background.mp3', 'assets/background.ogg']);
 }
 
 function create () {
 
-   //http://docs.phaser.io/Phaser.Physics.html
+  music = game.add.audio ('background');
+
+  //http://docs.phaser.io/Phaser.Physics.html
   //Basically we need some kind of physics engine to react to collisions.
   game.physics.startSystem (Phaser.Physics.ARCADE);
 
@@ -131,6 +139,10 @@ function update () {
 function releaseBall () {
 
   if (ballOnPaddle) {
+
+    //let the music play!
+    music.play ();
+
     ballOnPaddle = false;
     ball.body.velocity.y = - 300;
     ball.body.velocity.x = -75;
@@ -181,6 +193,9 @@ function ballHitBrick (_ball, _brick) {
 }
 
 function ballLost () {
+
+  music.stop ();
+
   lives--;
   livesText.text = 'lives: ' + lives;
 
