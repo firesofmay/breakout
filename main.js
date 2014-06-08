@@ -17,6 +17,7 @@ var ballOnPaddle = true;
 var s;
 
 var music;
+var hitwall;
 
 function preload () {
 
@@ -29,6 +30,7 @@ function preload () {
   //load the background music!
   game.load.audio ('background', ['assets/background.mp3', 'assets/background.ogg']);
   game.load.audio ('hit', ['assets/hit.mp3', 'assets/hit.ogg']);
+  game.load.audio ('hitwall', ['assets/hitwall.mp3', 'assets/hitwall.ogg']);
 
 }
 
@@ -36,6 +38,7 @@ function create () {
 
   music = game.add.audio ('background');
   hit = game.add.audio ('hit');
+  hitwall = game.add.audio ('hitwall');
 
   //http://docs.phaser.io/Phaser.Physics.html
   //Basically we need some kind of physics engine to react to collisions.
