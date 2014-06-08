@@ -28,11 +28,14 @@ function preload () {
 
   //load the background music!
   game.load.audio ('background', ['assets/background.mp3', 'assets/background.ogg']);
+  game.load.audio ('hit', ['assets/hit.mp3', 'assets/hit.ogg']);
+
 }
 
 function create () {
 
   music = game.add.audio ('background');
+  hit = game.add.audio ('hit');
 
   //http://docs.phaser.io/Phaser.Physics.html
   //Basically we need some kind of physics engine to react to collisions.
@@ -156,12 +159,26 @@ function releaseBall () {
 }
 
 function ballHitPaddle (_ball, _paddle) {
-  var diff = 0;
+    var diff = 0;
 
-  if (_ball.x === paddle.x)
-    _ball.body.velocity.x = 2 + Math.random() * 8;
-  else
-    _ball.body.velocity.x = (10 * (ball.x - _paddle.x));
+    if (_ball.x < _paddle.x)
+    {
+        //  Ball is on the left-hand side of the paddle
+        diff = _paddle.x - _ball.x;
+        _ball.body.velocity.x = (-10 * diff);
+    }
+    else if (_ball.x > _paddle.x)
+    {
+        //  Ball is on the right-hand side of the paddle
+        diff = _ball.x -_paddle.x;
+        _ball.body.velocity.x = (10 * diff);
+    }
+    else
+    {
+        //  Ball is perfectly in the middle
+        //  Add a little random X to stop it bouncing straight up!
+        _ball.body.velocity.x = 2 + Math.random() * 8;
+    }
 
 }
 
@@ -172,6 +189,8 @@ function ballHitBrick (_ball, _brick) {
   score += 10;
 
   scoreText.text = "score: " + score;
+
+  hit.play ();
 
   //Any more bricks Yo?
   if (bricks.countLiving () == 0) {
